@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Overview = ({ tasks }) => {
-  const tasksList = tasks.map(({ id, title, taskNumber }) => {
+const Overview = ({ tasks, handleDeleteTask }) => {
+  const tasksList = tasks.map(({ id, title }, index) => {
     return (
       <li key={id}>
-        task {taskNumber} : {title}
+        task {index + 1} : {title}
+        <button onClick={() => handleDeleteTask(id)}>x</button>
       </li>
     );
   });

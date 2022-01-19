@@ -26,7 +26,9 @@ function App() {
     setTask('');
   };
 
-  console.log(tasks);
+  const handleDeleteTask = (id) => {
+    setTasks((prevState) => prevState.filter((task) => task.id !== id));
+  };
 
   return (
     <div className='App'>
@@ -43,7 +45,7 @@ function App() {
           />
           <button>Add tasks</button>
         </form>
-        <Overview tasks={tasks} />
+        <Overview tasks={tasks} handleDeleteTask={handleDeleteTask} />
       </div>
     </div>
   );

@@ -18,12 +18,15 @@ function App() {
       ...prevState,
       {
         id: nanoid(),
+        taskNumber: tasks.length + 1,
         title: task,
       },
     ]);
 
     setTask('');
   };
+
+  console.log(tasks);
 
   return (
     <div className='App'>

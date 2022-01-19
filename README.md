@@ -6,3 +6,13 @@
 
 * app
   - overview
+
+[DONE]
+
+## other feature
+
+1. instead of displaying unordered list items, manage the amount of tasks in state and let each tasks display its number. Don't use ordered list, try using state.
+
+2. implement a delete button for each task. The delete button should remove the specific task from the state array.
+
+3. implement an edit button for each task. When you press the edit button, this specific task should become changeable, and the edit button should change to a resubmit button.

@@ -6,6 +6,7 @@ import Overview from './components/Overview';
 function App() {
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState('');
+  const [edit, setEdit] = useState(false);
 
   const handleChange = (e) => {
     setTask(e.target.value);
@@ -20,6 +21,7 @@ function App() {
         id: nanoid(),
         taskNumber: tasks.length + 1,
         title: task,
+        editing: false,
       },
     ]);
 
@@ -28,6 +30,26 @@ function App() {
 
   const handleDeleteTask = (id) => {
     setTasks((prevState) => prevState.filter((task) => task.id !== id));
+  };
+
+  const handleEditTask = (id) => {
+    setTasks((prevState) => {
+      return prevState.map((task) => {
+        return task.id === id
+          ? { ...task, editing: !task.editing }
+          : { ...task, editing: false };
+      });
+    });
+  };
+
+  const handleSubmitEditTask = (id, updatedTask) => {
+    setTasks((prevState) => {
+      return prevState.map((task) => {
+        return task.id === id
+          ? { ...task, title: updatedTask, editing: !task.editing }
+          : task;
+      });
+    });
   };
 
   return (
@@ -45,7 +67,13 @@ function App() {
           />
           <button>Add tasks</button>
         </form>
-        <Overview tasks={tasks} handleDeleteTask={handleDeleteTask} />
+        <Overview
+          tasks={tasks}
+          edit={edit}
+          handleDeleteTask={handleDeleteTask}
+          handleEditTask={handleEditTask}
+          handleSubmitEditTask={handleSubmitEditTask}
+        />
       </div>
     </div>
   );
